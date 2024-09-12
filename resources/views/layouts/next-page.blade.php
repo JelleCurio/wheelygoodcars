@@ -74,14 +74,25 @@
 <body>
 
 <div class="form-container">
+    @if ($errors->any())
+        <div class="alert alert-danger">
+            <ul>
+                @foreach ($errors->all() as $error)
+                    <li>{{ $error }}</li>
+                @endforeach
+            </ul>
+        </div>
+    @endif
     <h1 class="form-title">Nieuw aanbod</h1>
 
     <!-- License Plate Display -->
     <div class="license-plate">{{ $inputText }}</div>
 
     <!-- Display prefilled form field -->
-    <form action="{{ route('aanbod.submit') }}" method="POST">
+    <form action="{{ route('aanbod.toDB') }}" method="POST">
         @csrf
+
+        <input style="display: none" type="text" value="{{ $inputText }}" name="license_plate">
 
         <!-- Merk -->
         <div class="form-group">

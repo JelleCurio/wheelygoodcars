@@ -6,6 +6,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Car;
 
+
 // Import the Car model
 use Illuminate\Support\Facades\Auth;
 
@@ -28,5 +29,20 @@ class FormController extends Controller
         $inputText = session('inputText', '');
 
         return view('layouts.next-page', compact('inputText'));
+    }
+
+    public function SaveToDB(Request $request){
+
+        // Validate the input data
+        $validatedData = $request->validate([
+            'license_plate' => 'required|string|max:255',
+        ]);
+
+        // Create a new Car record with the validated license_plate and user_id
+        Car::create([
+            'user_id' => Auth::id(),
+            'license_plate' => $validatedData['license_plate']
+        ]);
+
     }
 }

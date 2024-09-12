@@ -34,8 +34,11 @@ Route::middleware('auth')->group(function () {
     // routes die form doen submitten
     Route::post('/aanbod-plaatsen/submit', [FormController::class, 'submitForm'])->name('aanbod.submit');
 
+    Route::post('/next-page/submit', [FormController::class, 'SaveToDB'])->name('aanbod.toDB');
     // rout om de kenteken data in de volgende pagina in te laden
     Route::get('/next-page', [FormController::class, 'showNextPage'])->name('next-page.show');
 });
+
+Route::get('test', function() {return view('test');});
 
 require __DIR__.'/auth.php';
