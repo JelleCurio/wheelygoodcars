@@ -60,6 +60,9 @@ class FormController extends Controller
             'production_year' => $validatedData['production_year'],
             'color' => $validatedData['color'],
         ]);
+
+        return redirect('alle-autos');
+
     }
 
     public function getUserCars()
