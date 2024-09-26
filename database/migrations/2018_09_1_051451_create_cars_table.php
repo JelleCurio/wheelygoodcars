@@ -18,7 +18,7 @@ return new class extends Migration
             $table->string('brand')->default('UNKNOWN'); // Default value for testing
             $table->string('model')->default('UNKNOWN'); // Default value for testing
             $table->decimal('price', 8, 2)->default(0.00); // Default value for testing
-            $table->integer('mileage')->default(0); // Default value for testing
+            $table->integer('mileage')->nullable();
             $table->integer('seats')->nullable();
             $table->integer('doors')->nullable();
             $table->integer('production_year')->nullable();

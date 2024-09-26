@@ -19,9 +19,7 @@ Route::get('/', function () {
 })->name('home');
 
 Route::middleware('auth')->group(function () {
-    Route::get('/alle-autos', function () {
-        return view('layouts.alle-autos');
-    })->name('alle-autos');
+    Route::get('/alle-autos', [FormController::class, 'carList'])->name('alle-autos'); // Route for car list
 
     Route::get('/mijn-aanbod', function () {
         return view('layouts.mijn-aanbod');
@@ -37,7 +35,21 @@ Route::middleware('auth')->group(function () {
     Route::post('/next-page/submit', [FormController::class, 'SaveToDB'])->name('aanbod.toDB');
     // rout om de kenteken data in de volgende pagina in te laden
     Route::get('/next-page', [FormController::class, 'showNextPage'])->name('next-page.show');
+
+    route::get('/mijn-aanbod', [FormController::class, 'getUserCars'])->name('mijn-aanbod');
+
+    // Route om een auto te verwijderen
+    Route::delete('/auto/verwijderen/{id}', [FormController::class, 'deleteCar'])->name('auto.delete');
+
+    // Route om de edit-pagina weer te geven
+    Route::get('/auto/bewerken/{id}', [FormController::class, 'editCar'])->name('auto.edit');
+
+    // Route om de update op te slaan
+    Route::post('/auto/update/{id}', [FormController::class, 'updateCar'])->name('auto.update');
+
 });
+
+
 
 Route::get('test', function() {return view('test');});
 

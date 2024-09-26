@@ -71,85 +71,90 @@
         }
     </style>
 </head>
-<body>
 
-<div class="form-container">
-    @if ($errors->any())
-        <div class="alert alert-danger">
-            <ul>
-                @foreach ($errors->all() as $error)
-                    <li>{{ $error }}</li>
-                @endforeach
-            </ul>
-        </div>
-    @endif
-    <h1 class="form-title">Nieuw aanbod</h1>
+@extends('layouts.app')
 
-    <!-- License Plate Display -->
-    <div class="license-plate">{{ $inputText }}</div>
-
-    <!-- Display prefilled form field -->
-    <form action="{{ route('aanbod.toDB') }}" method="POST">
-        @csrf
-
-        <input style="display: none" type="text" value="{{ $inputText }}" name="license_plate">
-
-        <!-- Merk -->
-        <div class="form-group">
-            <label for="brand">Merk</label>
-            <input type="text" id="brand" name="brand" class="readonly-field" value="OPEL" readonly>
-        </div>
-
-        <!-- Model -->
-        <div class="form-group">
-            <label for="model">Model</label>
-            <input type="text" id="model" name="model" class="readonly-field" value="CORSA" readonly>
-        </div>
-
-        <!-- Inline group for Zitplaatsen, Aantal deuren, Massa rijklaar -->
-        <div class="form-group inline-group">
-            <div class="form-group small-input">
-                <label for="zitplaatsen">Zitplaatsen</label>
-                <input type="text" id="zitplaatsen" name="zitplaatsen" class="readonly-field" value="5" readonly>
+@section('content')
+    <div class="form-container">
+        @if ($errors->any())
+            <div class="alert alert-danger">
+                <ul>
+                    @foreach ($errors->all() as $error)
+                        <li>{{ $error }}</li>
+                    @endforeach
+                </ul>
             </div>
-            <div class="form-group small-input">
-                <label for="aantal_deuren">Aantal deuren</label>
-                <input type="text" id="aantal_deuren" name="aantal_deuren" class="readonly-field" value="4" readonly>
+        @endif
+        <h1 class="form-title">Nieuw aanbod</h1>
+
+        <!-- License Plate Display -->
+        <div class="license-plate">{{ $inputText }}</div>
+
+        <!-- Display prefilled form field -->
+        <form action="{{ route('aanbod.toDB') }}" method="POST">
+            @csrf
+
+            <input style="display: none" type="text" value="{{ $inputText }}" name="license_plate">
+
+            <!-- Merk -->
+            <div class="form-group">
+                <label for="brand">Merk</label>
+                <input type="text" id="brand" name="brand" class="readonly-field" value="OPEL" readonly>
             </div>
-            <div class="form-group small-input">
-                <label for="massa_rijklaar">Massa rijklaar</label>
-                <input type="text" id="massa_rijklaar" name="massa_rijklaar" class="readonly-field" value="1163" readonly>
+
+            <!-- Model -->
+            <div class="form-group">
+                <label for="model">Model</label>
+                <input type="text" id="model" name="model" class="readonly-field" value="CORSA" readonly>
             </div>
-        </div>
 
-        <!-- Inline group for Jaar van productie, Kleur -->
-        <div class="form-group inline-group">
-            <div class="form-group small-input">
-                <label for="jaar_van_productie">Jaar van productie</label>
-                <input type="text" id="jaar_van_productie" name="jaar_van_productie" class="readonly-field" value="2014" readonly>
+            <!-- Inline group for Zitplaatsen, Aantal deuren, Massa rijklaar -->
+            <div class="form-group inline-group">
+                <div class="form-group small-input">
+                    <label for="zitplaatsen">Zitplaatsen</label>
+                    <input type="text" id="zitplaatsen" name="zitplaatsen" class="readonly-field" value="5" readonly>
+                </div>
+                <div class="form-group small-input">
+                    <label for="aantal_deuren">Aantal deuren</label>
+                    <input type="text" id="aantal_deuren" name="aantal_deuren" class="readonly-field" value="4" readonly>
+                </div>
+                <div class="form-group small-input">
+                    <label for="massa_rijklaar">Massa rijklaar</label>
+                    <input type="text" id="massa_rijklaar" name="massa_rijklaar" class="readonly-field" value="1163" readonly>
+                </div>
             </div>
-            <div class="form-group small-input">
-                <label for="kleur">Kleur</label>
-                <input type="text" id="kleur" name="kleur" class="readonly-field" value="WIT" readonly>
+
+            <!-- Inline group for Jaar van productie, Kleur -->
+            <div class="form-group inline-group">
+                <div class="form-group">
+                    <label for="jaar_van_productie">Jaar van productie</label>
+                    <input type="text" id="production_year" name="production_year">
+                </div>
+                <div class="form-group">
+                    <label for="kleur">Kleur</label>
+                    <input type="text" id="color" name="color">
+                </div>
             </div>
-        </div>
 
-        <!-- Kilometerstand -->
-        <div class="form-group">
-            <label for="kilometerstand">Kilometerstand</label>
-            <input type="text" id="kilometerstand" name="kilometerstand">
-        </div>
+            <!-- Kilometerstand -->
+            <div class="form-group">
+                <label for="kilometerstand">Kilometerstand</label>
+                <input type="text" id="mileage" name="mileage">
+            </div>
 
-        <!-- Vraagprijs -->
-        <div class="form-group">
-            <label for="vraagprijs">Vraagprijs</label>
-            <input type="text" id="vraagprijs" name="vraagprijs">
-        </div>
+            <!-- Vraagprijs -->
+            <div class="form-group">
+                <label for="vraagprijs">Vraagprijs</label>
+                <input type="text" id="price" name="price">
+            </div>
 
-        <!-- Submit Button -->
-        <button type="submit" class="submit-button">Aanbod afronden</button>
-    </form>
-</div>
+            <!-- Submit Button -->
+            <button type="submit" class="submit-button">Aanbod afronden</button>
+        </form>
+    </div>
+@endsection
 
-</body>
+
+
+
 </html>
