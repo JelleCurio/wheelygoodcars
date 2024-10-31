@@ -18,8 +18,9 @@ Route::get('/', function () {
     return view('welcome');
 })->name('home');
 
+Route::get('/alle-autos', [FormController::class, 'carList'])->name('alle-autos'); // Route for car list
+
 Route::middleware('auth')->group(function () {
-    Route::get('/alle-autos', [FormController::class, 'carList'])->name('alle-autos'); // Route for car list
 
     Route::get('/mijn-aanbod', function () {
         return view('layouts.mijn-aanbod');
