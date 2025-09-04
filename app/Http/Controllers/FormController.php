@@ -12,7 +12,6 @@ use Illuminate\Support\Facades\Auth;
 
 class FormController extends Controller
 {
-
     public function carList()
     {
         // Retrieve all cars from the database
@@ -40,7 +39,8 @@ class FormController extends Controller
         return view('layouts.next-page', compact('inputText'));
     }
 
-    public function SaveToDB(Request $request){
+    public function SaveToDB(Request $request)
+    {
 
         // Validate the input data
         $validatedData = $request->validate([
@@ -133,5 +133,11 @@ class FormController extends Controller
         $car->update($validatedData);
 
         return redirect()->route('mijn-aanbod')->with('success', 'Auto succesvol bijgewerkt.');
+    }
+
+    public function show($id)
+    {
+        $car = Car::findOrFail($id);
+        return view('layouts.detail-car', compact('car'));
     }
 }

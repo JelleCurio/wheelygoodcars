@@ -20,6 +20,8 @@ Route::get('/', function () {
 
 Route::get('/alle-autos', [FormController::class, 'carList'])->name('alle-autos'); // Route for car list
 
+Route::get('/detail-car/{id}', [FormController::class, 'show'])->name('detail-car');
+
 Route::middleware('auth')->group(function () {
 
     Route::get('/mijn-aanbod', function () {
